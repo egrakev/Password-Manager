@@ -227,15 +227,13 @@ def password_manager():
         conn.close()
 
     # Clear entry boxes
-    def clear():
+    def clear(e):
         user_entry.delete(0, END)
         password_entry.delete(0, END)
         application_entry.delete(0, END)
 
     # Select record and grab row ID
     def select_record(e):
-        clear()
-
         selection = tree.selection()
         item = tree.focus()
         values = tree.item(item, "values")
@@ -352,8 +350,8 @@ def password_manager():
     query()
 
     # Binding Keys
-    tree.bind("<ButtonRelease-1>", select_record)
-
+    tree.bind("<Double-1>", select_record)
+    tree.bind("<Button-1>", clear)
 
 # Automatically open correct window
 c.execute("SELECT * FROM masterpassword")
