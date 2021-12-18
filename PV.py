@@ -95,7 +95,7 @@ def login_screen():
     wrong_pwd_label.pack()
 
     # Match password from Database to entry
-    def password_check(event):
+    def password_check(e):
         conn = sqlite3.connect("pwdvault.db")
         c = conn.cursor()
 
@@ -232,6 +232,12 @@ def password_manager():
         password_entry.delete(0, END)
         application_entry.delete(0, END)
 
+    # Clear entry boxes (non event)
+    def clear_entry():
+        user_entry.delete(0, END)
+        password_entry.delete(0, END)
+        application_entry.delete(0, END)
+
     # Select record and grab row ID
     def select_record(e):
         selection = tree.selection()
@@ -264,7 +270,7 @@ def password_manager():
             conn.commit()
             conn.close()
 
-            clear()
+            clear_entry()
 
     # Submit new entry
     def submit():
@@ -286,7 +292,7 @@ def password_manager():
         conn.commit()
         conn.close()
 
-        clear()
+        clear_entry()
 
     # Generate random password
     def generate():
@@ -334,6 +340,8 @@ def password_manager():
 
         conn.commit()
         conn.close()
+
+        clear_entry()
 
     # Buttons
     submit_button = Button(lf, text="Submit", command=submit, width=8)
