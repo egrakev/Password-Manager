@@ -1,7 +1,7 @@
 # PasswordVault
 Password Manager/Generator
 
-Password Vault built with Python
+Password Vault built with Python.
 Modules used: Tkinter, random, sqlite3, hashlib.
 
 Start Screen:
