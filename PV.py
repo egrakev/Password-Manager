@@ -55,7 +55,7 @@ def start_screen():
     wrongpwd_label.pack()
 
     # Create and Hash password
-    def check_password(event):
+    def check_password():
         conn = sqlite3.connect("pwdvault.db")
         c = conn.cursor()
 
@@ -96,6 +96,8 @@ def login_screen():
 
     # Match password from Database to entry
     def password_check(e):
+
+        submit_button.focus()
         conn = sqlite3.connect("pwdvault.db")
         c = conn.cursor()
 
@@ -240,6 +242,7 @@ def password_manager():
 
     # Select record and grab row ID
     def select_record(e):
+        clear(e)
         selection = tree.selection()
         item = tree.focus()
         values = tree.item(item, "values")
